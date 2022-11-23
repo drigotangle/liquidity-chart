@@ -92,7 +92,8 @@ router.get('/chart/:pool', cors(corsOptions), async (req, res) => {
           if(tickToPrice(i) < priceRoof || i === maxTick && i % 60 === 0){
           try {
             const result = await pool.ticks(i)
-            const allRange = await pool.ticks(60000)
+            const allRange = await pool.ticks(887220)
+            console.log(Number(allRange.liquidityGross._hex), 'allRange')
             data.push({
               price: tickToPrice(i),
               liquidity: i === maxTick ? Number(result.liquidityGross._hex) : Number(result.liquidityGross._hex) + Number(allRange.liquidityGross._hex)
